@@ -129,9 +129,9 @@
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
     <div id="tab-pendaftaran" class="space-y-8 animate-fade-in pb-20">
       
-      <div class="text-center mb-8 glass-panel p-6 rounded-3xl mx-auto max-w-3xl border border-white/20">
-        <h2 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-indigo-200 mb-3 drop-shadow-lg">FORM PENDAFTARAN SISWA BARU</h2>
-        <p class="text-slate-300 font-medium">Tahun Ajaran  :  <span class="text-2xl text-blue-200 font-bold bg-blue-900/50 px-4 py-1 rounded-full border border-blue-400/50 shadow-inner">2026/2027</span></p>
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-300 mb-3 drop-shadow-lg">FORM PENDAFTARAN SISWA BARU</h2>
+        <p class="text-slate-400 font-medium">Tahun Ajaran  :  <span id="teks-tahun-ajaran" class="text-2xl text-blue-300 font-bold bg-blue-900/30 px-3 py-1 rounded-full border border-blue-800/50">Memuat...</span></p>
       </div>
 
       <!-- Kotak Pesan Sukses -->
@@ -358,7 +358,7 @@
 
   <script>
     // --- GANTI URL DI BAWAH INI DENGAN URL WEB APP ANDA ---
-    const URL_GAS = "https://script.google.com/macros/s/AKfycbz43Or3D-gGx9zKlMzOAx-aioGOjte_DBwoCxwrAwJiU9ijfM2-rpXJe9GafDo7lZUWjQ/exec";
+    const URL_GAS = "MASUKKAN_URL_WEB_APP_ANDA_DISINI";
     // -------------------------------------------------------
 
     function showToast(msg, type = 'success') {
@@ -482,7 +482,7 @@
       };
 
       try {
-        if(URL_GAS === "MASUKKAN_URL_WEB_APP_ANDA_DISINI") {
+        if(URL_GAS === "https://script.google.com/macros/s/AKfycbz43Or3D-gGx9zKlMzOAx-aioGOjte_DBwoCxwrAwJiU9ijfM2-rpXJe9GafDo7lZUWjQ/exec") {
           throw new Error("Tautan Web App (URL_GAS) belum dimasukkan ke dalam script.");
         }
 
@@ -597,6 +597,13 @@
 
     // Inisialisasi Event Listener
     window.addEventListener('DOMContentLoaded', (event) => {
+      // Set Tahun Ajaran Otomatis (Ganti di bulan Juli)
+      const now = new Date();
+      const year = now.getFullYear();
+      const month = now.getMonth(); // 0 = Jan, 6 = Juli
+      let tahunAjaran = (month >= 6) ? year + "/" + (year + 1) : (year - 1) + "/" + year;
+      document.getElementById('teks-tahun-ajaran').innerText = tahunAjaran;
+
       periksaForm();
 
       // Fitur Auto-Kapital
